@@ -27,7 +27,7 @@ df['date'] = pd.to_datetime(df['date'], format="%d/%m/%Y")
 
 last_row = df['date'].dropna().index[-1]
 df = df.iloc[:last_row+1]
-items = ['date', 'Eq+', 'US BA', 'TW BA', 'Dutch BA', 'Irish BA', 'car_cost', 'degiro', 'Bitpanda', 'P2P',
+items = ['date', 'Eq+', 'US BA', 'TW BA', 'Dutch BA', 'Irish BA', 'car_cost', 'degiro', 'Crypto', 'P2P',
          'Property Value Owned', 'Owe ASML', 'Assets (no car/hs)', 'total-est-NW']
 df = df[items]
 df = df.fillna(0)
@@ -40,7 +40,7 @@ equity = ['Eq+', 'degiro']
 df['Stocks'] = df.loc[:, equity].sum(axis=1)
 df = df.drop(columns=equity)
 
-df = df.rename(columns={'car_cost': 'Car import', 'Property Value Owned': 'Property', 'Bitpanda': 'Crypto',
+df = df.rename(columns={'car_cost': 'Car import', 'Property Value Owned': 'Property',
                         'date': 'Date', 'total-est-NW': 'Total-NW'})
 
 # euro sign € \u20ac
