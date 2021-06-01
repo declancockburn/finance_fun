@@ -20,7 +20,7 @@ px = 1/plt.rcParams['figure.dpi']
 # set seaborn style
 # sns.set_theme()
 plt.style.use('seaborn')
-df_og = pd.read_csv('finance.csv')
+df_og = pd.read_csv('finance - Overall.csv')
 df = df_og.copy()
 df['date'] = pd.to_datetime(df['date'], format="%d/%m/%Y")
 # df.plot('date', 'total-est-NW')
