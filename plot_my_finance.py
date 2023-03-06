@@ -28,7 +28,8 @@ df['date'] = pd.to_datetime(df['date'], format="%d/%m/%Y")
 last_row = df['date'].dropna().index[-1]
 df = df.iloc[:last_row+1]
 items = ['date', 'Eq+', 'US BA', 'TW BA', 'Dutch BA', 'Irish BA', 'car_cost', 'degiro', 'Crypto', 'P2P',
-         'Property Value Owned', 'Owe ASML', 'Assets (no car/hs)', 'total-est-NW']
+         'Property Value Owned (Obvion)', 'Owe ASML', 'Assets (no car/hs)', 'total-est-NW']
+
 df = df[items]
 df = df.fillna(0)
 
@@ -40,13 +41,13 @@ equity = ['Eq+', 'degiro']
 df['Stocks'] = df.loc[:, equity].sum(axis=1)
 df = df.drop(columns=equity)
 
-df = df.rename(columns={'car_cost': 'Car import', 'Property Value Owned': 'Property',
+df = df.rename(columns={'car_cost': 'Car import', 'Property Value Owned (Obvion)': 'Property',
                         'date': 'Date', 'total-est-NW': 'Total-NW'})
 
 # euro sign € \u20ac
 
 df_total = df[['Date', 'Total-NW']]
-df_area = df[['Date', 'Property', 'Crypto', 'Stocks', 'Bank', 'Car import', 'P2P']]
+df_area = df[['Date', 'Property', 'Car import', 'Bank', 'Crypto', 'Stocks',  'P2P']]
 
 df_perc = df_area.drop(columns = ['Date'])
 df_perc = df_perc.divide(df_perc.sum(axis=1), axis=0)*100
